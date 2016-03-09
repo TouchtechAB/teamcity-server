@@ -14,5 +14,11 @@ then
     wget -P $TEAMCITY_DATA_PATH/plugins https://dl.bintray.com/cloudnative/teamcity/teamcity-webhooks/0.0.5/webhooks.zip
 fi
 
+if [ ! -f "$TEAMCITY_DATA_PATH/plugins/teamcity-slack-integration.zip" ];
+then
+    echo "Downloading Slack plugin..."
+    wget -P $TEAMCITY_DATA_PATH/plugins https://github.com/enlivenhq/teamcity-slack/blob/master/target/teamcity-slack-integration.zip?raw=true
+fi
+
 echo "Starting teamcity..."
 exec /opt/TeamCity/bin/teamcity-server.sh run
