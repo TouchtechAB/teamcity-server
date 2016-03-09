@@ -27,16 +27,13 @@ ENV TEAMCITY_DATA_PATH /var/lib/teamcity
 RUN wget -qO- https://download.jetbrains.com/teamcity/TeamCity-$TEAMCITY_VERSION.tar.gz | tar xz -C /opt \
   && mkdir -p $TEAMCITY_DATA_PATH/config
 
-# Postgres JDBC driver
-RUN mkdir -p $TEAMCITY_DATA_PATH/lib/jdbc \
-  && wget -P $TEAMCITY_DATA_PATH/lib/jdbc https://jdbc.postgresql.org/download/postgresql-9.4.1208.jar
-
-# Webhook plugin
-RUN wget -P $TEAMCITY_DATA_PATH/plugins https://dl.bintray.com/cloudnative/teamcity/teamcity-webhooks/0.0.5/webhooks.zip
-
 # Enable the correct Valve when running behind a proxy
 RUN sed -i -e "s/\.*<\/Host>.*$/<Valve className=\"org.apache.catalina.valves.RemoteIpValve\" protocolHeader=\"x-forwarded-proto\" \/><\/Host>/" /opt/TeamCity/conf/server.xml
 
+# Entrypoint
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
 EXPOSE 8111
 VOLUME /var/lib/teamcity
-ENTRYPOINT exec /opt/TeamCity/bin/teamcity-server.sh run
