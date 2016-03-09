@@ -14,10 +14,10 @@ then
     wget -P $TEAMCITY_DATA_PATH/plugins https://dl.bintray.com/cloudnative/teamcity/teamcity-webhooks/0.0.5/webhooks.zip
 fi
 
-if [ ! -f "$TEAMCITY_DATA_PATH/plugins/teamcity-slack-integration.zip" ];
+if [ ! -f "$TEAMCITY_DATA_PATH/plugins/tcSlackNotificationsPlugin" ];
 then
     echo "Downloading Slack plugin..."
-    wget -P $TEAMCITY_DATA_PATH/plugins https://github.com/enlivenhq/teamcity-slack/blob/master/target/teamcity-slack-integration.zip?raw=true
+    wget -P $TEAMCITY_DATA_PATH/plugins https://github.com/PeteGoo/tcSlackBuildNotifier/releases/download/1.4.4/tcSlackNotificationsPlugin.zip
 fi
 
 echo "Starting teamcity..."
