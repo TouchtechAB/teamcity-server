@@ -37,8 +37,6 @@ RUN wget -P $TEAMCITY_DATA_PATH/plugins https://dl.bintray.com/cloudnative/teamc
 # Enable the correct Valve when running behind a proxy
 RUN sed -i -e "s/\.*<\/Host>.*$/<Valve className=\"org.apache.catalina.valves.RemoteIpValve\" protocolHeader=\"x-forwarded-proto\" \/><\/Host>/" /opt/TeamCity/conf/server.xml
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-
-EXPOSE  8111
+EXPOSE 8111
 VOLUME /var/lib/teamcity
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT exec /opt/TeamCity/bin/teamcity-server.sh run
