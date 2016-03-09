@@ -20,10 +20,10 @@ RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true 
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
+# Get and install teamcity
 ENV TEAMCITY_VERSION 9.1.6
 ENV TEAMCITY_DATA_PATH /var/lib/teamcity
 
-# Get and install teamcity
 RUN wget -qO- https://download.jetbrains.com/teamcity/TeamCity-$TEAMCITY_VERSION.tar.gz | tar xz -C /opt \
   && mkdir -p $TEAMCITY_DATA_PATH/config
 
