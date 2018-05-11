@@ -20,17 +20,5 @@ then
     wget -P $TEAMCITY_DATA_PATH/plugins https://github.com/PeteGoo/tcSlackBuildNotifier/releases/download/1.4.4/tcSlackNotificationsPlugin.zip
 fi
 
-if [ ! -f "$TEAMCITY_DATA_PATH/plugins/cloud-google" ];
-then
-    echo "Downloading Google Agents plugin..."
-    wget -P $TEAMCITY_DATA_PATH/plugins https://github.com/JetBrains/teamcity-google-agent/archive/0.6.7.zip
-fi
-
-if [ ! -f "$TEAMCITY_DATA_PATH/plugins/google-artifact-storage" ];
-then
-    echo "Downloading Google Artifacts plugin..."
-    wget -P $TEAMCITY_DATA_PATH/plugins https://github.com/JetBrains/teamcity-google-storage/archive/0.6.1.zip
-fi
-
 echo "Starting teamcity..."
 exec /opt/TeamCity/bin/teamcity-server.sh run
