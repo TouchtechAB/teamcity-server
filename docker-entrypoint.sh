@@ -2,10 +2,10 @@
 set -e
 
 mkdir -p $TEAMCITY_DATA_PATH/lib/jdbc
-if [ ! -f "$TEAMCITY_DATA_PATH/lib/jdbc/postgresql-9.3-1103.jdbc41.jar" ];
+if [ ! -f "$TEAMCITY_DATA_PATH/lib/jdbc/postgresql-42.5.4.jar" ];
 then
     echo "Downloading postgress JDBC driver..."
-    wget -P $TEAMCITY_DATA_PATH/lib/jdbc http://jdbc.postgresql.org/download/postgresql-9.3-1103.jdbc41.jar
+    wget -P $TEAMCITY_DATA_PATH/lib/jdbc https://jdbc.postgresql.org/download/postgresql-42.5.4.jar
 fi
 
 if [ ! -f "$TEAMCITY_DATA_PATH/plugins/webhooks.zip" ];
