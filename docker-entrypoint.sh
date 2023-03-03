@@ -2,12 +2,6 @@
 set -e
 
 mkdir -p $TEAMCITY_DATA_PATH/lib/jdbc
-if [ ! -f "$TEAMCITY_DATA_PATH/lib/jdbc/postgresql-42.5.4.jar" ];
-then
-    echo "Downloading postgress JDBC driver..."
-    wget -P $TEAMCITY_DATA_PATH/lib/jdbc https://jdbc.postgresql.org/download/postgresql-42.5.4.jar --no-check-certificate
-fi
-
 if [ ! -f "$TEAMCITY_DATA_PATH/plugins/tcSlackNotificationsPlugin" ];
 then
     echo "Downloading Slack plugin..."
